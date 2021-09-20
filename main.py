@@ -52,8 +52,15 @@ def getShows(userId):
         if totalTime.days > 30: 
             months = totalTime.days//30
             totalTime -= timedelta(days=months*30)
+
+        totalTimeStr = f'{months} months {totalTime.days} days {totalTime.seconds//3600} hours {(totalTime.seconds//60)%60} minutes'
         
-        print(f'total time watched: {months} months, {totalTime.days} days, {totalTime.seconds//3600} hours, {(totalTime.seconds//60)%60} minutes')
+        print(f'total time watched: {totalTimeStr}')
+
+        showlist.append({
+            'name': '##Totale Time##',
+            'duration_watched': totalTimeStr,
+        })
 
         if param == '-e':
             df = pd.DataFrame(showlist)
